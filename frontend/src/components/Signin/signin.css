@@ -1,0 +1,146 @@
+.sign-in-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 20px 10px rgba(0,0,0,0.1);
+    width: 50%;
+    margin: 200px auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sign-in-header {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    user-select: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.sign_in_username {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+    font-size: 1.25rem;
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.75rem;
+    /* 28px */
+    width: 100%;
+}
+
+.sign_in_password {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+    font-size: 1.25rem;
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.75rem;
+    /* 28px */
+    width: 100%;
+}
+
+label {
+    user-select: none;
+    font-weight: 700;
+}
+
+.sign_in_submit {
+    font-size: 1rem;
+    margin: 0 auto;
+    width: 30%;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.create-account {
+    text-decoration: underline;
+    user-select: none;
+    cursor: pointer;
+}
+
+.create-account:hover {
+    color: blue;
+}
+
+.sign-in-role-container {
+    margin-bottom: 30px;
+}
+
+.sign-in-role-container > label {
+    font-weight: 500;
+    margin: 0 10px;
+}
+
+.sign-in-role {
+    font-weight: 700;
+    user-select: none;
+}
+
+.sign-in-password-container,
+.sign-in-username-container {
+    position: relative;
+    width: 100%;
+}
+
+.signIn-password-err-msg,
+.signIn-username-err-msg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: red;
+}
+@media screen and (max-width: 767.98px) {
+    .sign-in-container {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 639.98px) {
+    .sign-in-container {
+        width: 100%;
+    }
+
+    .sign_in_username {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+    }
+
+    .sign_in_password {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+    }
+
+    .sign_in_submit {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+        width: 40%;
+    }
+
+    .sign-in-role,
+    .sign-in-role-container > label,
+    .create-account {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+    }
+}

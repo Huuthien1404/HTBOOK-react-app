@@ -1,0 +1,241 @@
+.sign-up-container {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.sign-up-header {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    user-select: none;
+}
+
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.sign_up_name {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+    font-size: 1.25rem;
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.75rem;
+    /* 28px */
+    width: 100%;
+}
+
+.sign_up_email {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+    font-size: 1.25rem;
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.75rem;
+    /* 28px */
+    width: 100%;
+}
+
+.sign_up_password {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+    font-size: 1.25rem;
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.75rem;
+    /* 28px */
+    width: 100%;
+}
+
+.sign_up_confirm {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.75rem;
+    /* 28px */
+    width: 100%;
+}
+
+.sign_up_submit {
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.75rem;
+    /* 28px */
+    margin: 30px 0;
+    width: 30%;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.forward_to_login {
+    margin-bottom: 20px;
+    text-decoration: underline;
+    user-select: none;
+    cursor: pointer;
+}
+
+.forward_to_login:hover {
+    color: blue;
+}
+
+label {
+    user-select: none;
+}
+
+.sign-up-role-container,
+.sign-up-confirm-container,
+.sign-up-password-container,
+.sign-up-email-container,
+.sign-up-name-container {
+    position: relative;
+    width: 100%;
+}
+
+.role-err-msg,
+.confirm-err-msg,
+.password-err-msg,
+.email-err-msg,
+.name-err-msg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: red;
+    line-height: 0.75rem;
+}
+
+.admin,
+.user {
+    margin: 0 10px;
+}
+
+.sign-up-role-container>label {
+    font-weight: 500;
+}
+
+.sign-up-role-title {
+    font-weight: 700;
+}
+
+.role-err-msg {
+    bottom: -1rem;
+}
+
+@media screen and (max-width: 767.98px) {
+    .sign-up-form {
+        width: 80%;
+    }
+
+    .sign-up-container {
+        padding: 100px 10px;
+    }
+
+    .sign-up-container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 639.98px) {
+    .sign-up-form {
+        width: 100%;
+    }
+
+    .sign-up-container {
+        padding: 100px 10px;
+    }
+
+    .sign_up_name {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+        margin-bottom: 40px;
+    }
+
+    .sign_up_email {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+        margin-bottom: 40px;
+    }
+
+    .sign_up_password {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+        margin-bottom: 40px;
+    }
+
+    .sign_up_confirm {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+        margin-bottom: 40px;
+    }
+
+    .sign_up_submit {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+    }
+
+    .forward_to_login {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+    }
+
+    .sign-up-role-container>label {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+    }
+
+    .sign-up-role-title {
+        font-size: 0.875rem;
+        /* 14px */
+        line-height: 1.25rem;
+        /* 20px */
+    }
+
+    .role-err-msg,
+    .confirm-err-msg,
+    .password-err-msg,
+    .email-err-msg,
+    .name-err-msg {
+        font-size: 0.75 rem;
+        /* 12px */
+        line-height: 0.75rem;
+        /* 16px */
+    }
+
+    .sign-up-container {
+        width: 100%;
+    }
+}
