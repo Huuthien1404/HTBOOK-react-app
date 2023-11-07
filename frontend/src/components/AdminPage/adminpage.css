@@ -1,0 +1,633 @@
+
+
+.admin-container {
+    width: 100%;
+    display: flex;
+}
+
+.admin-sidebar {
+    width: 160px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: #222d32;
+}
+
+.admin-logo {
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #555299;
+}
+
+.admin-logo img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    user-select: none;
+}
+
+.admin-account {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #222d32;
+    flex-wrap: wrap;
+}
+
+.admin-account-avt {
+    width: 25%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-account-avt i {
+    font-size: 2.5rem;
+    color: #01b371;
+    user-select: none;
+}
+
+.admin-account-username {
+    width: calc(75% - 10px);
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.admin-account-name {
+    font-weight: 400;
+    color: #fff;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.admin-account-status {
+    display: flex;
+    align-items: center;
+}
+
+.admin-account-status-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #3c763d;
+}
+
+.admin-account-status-online {
+    width: calc(100% - 15px);
+    margin-left: 5px;
+    font-size: 0.75rem;
+    color: white;
+    font-weight: 400;
+    user-select: none;
+}
+
+.admin-user,
+.admin-administration {
+    padding: 20px;
+    font-weight: 400;
+    background-color: #1a2226;
+    color: #40555f;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.admin-logout-title,
+.admin-orders-title,
+.admin-products-title,
+.admin-users-title {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #222d32;
+}
+
+.admin-logout-title-icon,
+.admin-orders-title-icon,
+.admin-products-title-icon,
+.admin-users-title-icon {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-logout-title-icon i,
+.admin-logout-title-icon {
+    pointer-events: none;
+}
+
+.admin-logout-title-icon i,
+.admin-orders-title-icon i,
+.admin-products-title-icon i,
+.admin-users-title-icon i {
+    font-size: 1.5rem;
+    color: #77848a;
+    user-select: none;
+}
+
+.admin-logout-title-name,
+.admin-orders-title-name,
+.admin-products-title-name,
+.admin-users-title-name {
+    width: calc(80% - 10px);
+    margin-left: 10px;
+    color: #77848a;
+    font-weight: 400;
+    user-select: none;
+    word-wrap: break-word;
+    transition: all 0.2s linear;
+    cursor: pointer;
+}
+
+.admin-logout-title-name {
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.admin-logout-title {
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.admin-content {
+    width: calc(100% - 160px);
+}
+
+.admin-content-header {
+    width: 100%;
+    height: 60px;
+    background-color: #605ca8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.admin-content-logout span,
+.admin-content-logout i,
+.admin-content-menu i {
+    font-size: 1rem;
+    color: #fff;
+    user-select: none;
+    pointer-events: none;
+}
+
+.admin-content-logout {
+    cursor: pointer;
+}
+
+.admin-content-main {
+    width: 100%;
+    padding: 10px;
+    background-color: #ecf0f5;
+}
+
+.admin-content-main-title {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.admin-content-main-title-big {
+    font-size: 1.5rem;
+    color: #333333;
+    user-select: none;
+}
+
+.admin-content-main-title-small {
+    font-size: 0.875rem;
+    color: #abadb0;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.admin-content-main-items-container {
+    padding: 10px;
+    background-color: #fff;
+    border-top: 2px solid #dde1e8;
+    border-bottom: 2px solid #dde1e8;
+    position: relative;
+}
+
+.add-record {
+    background-color: #605ca8;
+    border-radius: 3px;
+    align-items: center;
+    display: flex;
+    width: 150px;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    justify-content: space-around;
+}
+
+.add-record-name,
+.add-record-icon i {
+    color: white;
+    font-size: 1rem;
+    user-select: none;
+}
+
+.add-record:hover {
+    background-color: purple;
+}
+
+.record-per-page-search {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.record-per-page {
+    display: flex;
+    align-items: center;
+}
+
+.record-number-per-page {
+    width: 40px;
+    font-size: 0.75rem;
+    text-align: center;
+    outline: none;
+}
+
+.record-per-page-name {
+    font-weight: 400;
+    color: #656565;
+    font-size: 0.875rem;
+    margin-left: 10px;
+    user-select: none;
+}
+
+.search-record {
+    display: flex;
+    align-items: center;
+}
+
+.search-record label {
+    font-weight: 400;
+    color: #5d5d5d;
+    margin-right: 10px;
+    font-size: 0.875rem;
+    user-select: none;
+}
+
+.search-record-content {
+    outline: none;
+    padding: 10px;
+}
+
+.record-items {
+    border: 1px solid #d7dbe2;
+}
+
+.record-items-products-title,
+.record-items-users-title {
+    display: flex;
+    border-bottom: 1px solid #d7dbe2;
+}
+
+.record-items-users-title-action,
+.record-items-users-title-role,
+.record-items-users-title-email,
+.record-items-users-title-username {
+    width: 25%;
+    padding: 10px;
+    border-left: 1px solid #d7dbe2;
+    word-wrap: break-word;
+    user-select: none;
+}
+
+.record-items-users-title-username {
+    border-left: none;
+}
+
+.record-item-product,
+.record-item-user {
+    display: flex;
+}
+
+
+.record-item-user-username,
+.record-item-user-email,
+.record-item-user-role,
+.record-item-user-action {
+    width: 25%;
+    border-left: 1px solid #d7dbe2;
+    border-top: 1px solid #d7dbe2;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 0.875rem;
+    /* 14px */
+    line-height: 1.25rem;
+    /* 20px */
+    word-wrap: break-word;
+    user-select: none;
+}
+
+.record-item-product-action,
+.record-item-product-imgUrl,
+.record-item-product-price,
+.record-item-product-sold,
+.record-item-product-keyFeatures,
+.record-item-product-author,
+.record-item-product-productName,
+.record-item-product-productId {
+    width: 12.5%;
+    border-left: 1px solid #d7dbe2;
+    border-bottom: 1px solid #d7dbe2;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 0.75rem;
+    /* 12px */
+    line-height: 1rem;
+    /* 16px */
+    word-wrap: break-word;
+    user-select: none;
+}
+
+.record-item-product-action {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 10%;
+    padding: 0;
+}
+
+.record-item-product-productId {
+    width: 7.5%;
+}
+
+.record-item-product-sold {
+    width: 7.5%;
+}
+
+.record-item-product-keyFeatures {
+    width: 30%;
+}
+
+.record-item-product-price {
+    width: 10%;
+}
+
+.record-item-user-username {
+    border-left: none;
+}
+
+.record-item-product-productName {
+    width: 10%;
+}
+
+.record-item-user-action {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.record-item-product-action-delete,
+.record-item-product-action-edit,
+.record-item-user-action-edit,
+.record-item-user-action-delete {
+    display: flex;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid black;
+    user-select: none;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0;
+    justify-content: center;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.record-item-user-action-delete,
+.record-item-user-action-edit {
+    padding: 10px 10px;
+}
+
+.admin-users-title-name {
+    color: white;
+    text-decoration: underline;
+}
+
+.record-items-products-title-action,
+.record-items-products-title-imgUrl,
+.record-items-products-title-price,
+.record-items-products-title-sold,
+.record-items-products-title-keyFeatures,
+.record-items-products-title-author,
+.record-items-products-title-productName,
+.record-items-products-title-productId {
+    width: 12.5%;
+    padding: 10px;
+    border-left: 1px solid #d7dbe2;
+    word-wrap: break-word;
+    user-select: none;
+    font-size: 0.875rem;
+    /* 14px */
+    line-height: 1.25rem;
+    /* 20px */
+}
+
+.record-items-products-title-productId {
+    width: 7.5%;
+}
+
+.record-items-products-title-sold {
+    width: 7.5%;
+}
+
+.record-items-products-title-keyFeatures {
+    width: 30%;
+}
+
+.record-items-products-title-price {
+    width: 10%;
+}
+
+.record-items-products-title-productName {
+    width: 10%;
+}
+
+.record-items-products-title-action {
+    width: 10%;
+}
+
+.pagination-user-table,
+.pagination-product-table {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    font-size: 0.875rem;
+    gap: 5px;
+    font-weight: 400;
+    user-select: none;
+    margin-top: 15px;
+    color: #939393;
+}
+
+.pagination-user-table .page-num-user-table,
+.pagination-product-table .page-num-product-table {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+.pagination-user-table .page-num-user-table:hover,
+.pagination-product-table .page-num-product-table:hover {
+    background-color: #605ca8;
+    color: #fff;
+}
+
+.pagination-user-table .active-user-table,
+.pagination-product-table .active-product-table {
+    background-color: #605ca8;
+    color: #fff;
+}
+
+.admin-page-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.add-product-record-form {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.add-product-record-label-container {
+    display: flex;
+}
+
+
+.add-product-record-label-productId,
+.add-product-record-label-productName,
+.add-product-record-label-author,
+.add-product-record-label-keyFeatures,
+.add-product-record-label-sold,
+.add-product-record-label-price,
+.add-product-record-label-imgUrl {
+    width: calc(100% / 7);
+    word-wrap: break-word;
+    border: 1px solid black;
+    font-weight: 400;
+    text-align: center;
+}
+
+.add-product-record-content-container {
+    display: flex;
+}
+
+.add-product-record-content-productId,
+.add-product-record-content-productName,
+.add-product-record-content-author,
+.add-product-record-content-keyFeatures,
+.add-product-record-content-sold,
+.add-product-record-content-price,
+.add-product-record-content-imgUrl {
+    width: calc(100% / 7);
+    text-align: center;
+    outline: none;
+}
+
+.add-product-record-content-keyFeatures {
+    height: 150px;
+}
+
+.submit-add-product-record {
+    padding: 10px 0;
+    margin: 0 auto;
+    word-wrap: break-word;
+}
+
+.show-edit-product-record {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: white;
+    z-index: 999;
+}
+
+.edit-product-record-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.edit-product-record-form label {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.edit-product-record-form input {
+    outline: none;
+    padding: 2px;
+    font-weight: 400;
+}
+
+.edit-product-record-submit {
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.record-item-product-action-edit span,
+.record-item-product-action-edit i {
+    pointer-events: none;
+    font-size: 0.75rem;
+}
+
+.record-item-product-action-delete span,
+.record-item-product-action-delete i {
+    pointer-events: none;
+    font-size: 0.75rem;
+}
+
+@media screen and (max-width: 767.98px) {
+    .admin-sidebar {
+        display: none;
+    }
+
+    .admin-content {
+        width: 100%;
+    }
+}

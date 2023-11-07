@@ -520,7 +520,11 @@
     background-color: #0a68ff;
 }
 
-
+.product-detail-page-container {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
 
 @media screen and (max-width: 639.98px) {
     .product-detail-left {

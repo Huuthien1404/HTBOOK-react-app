@@ -3,6 +3,7 @@ const authRoute = require("./routes/authRoute");
 const productRoute = require("./routes/productRoute");
 const orderRoute = require("./routes/orderRoute");
 const commentRoute = require("./routes/commentRoute");
+const showRoute = require("./routes/showRoute");
 const passport = require("passport");
 const session = require("express-session");
 const cors = require("cors");
@@ -61,6 +62,8 @@ app.use("/api/product/", productRoute);
 app.use("/api/order/", orderRoute);
 
 app.use("/api/comment/", commentRoute);
+
+app.use("/api/show/", showRoute);
 
 const socketIo = require("socket.io")(server, {
   cors: {

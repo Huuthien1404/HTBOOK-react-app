@@ -23,7 +23,7 @@ const Homepage = () => {
     const [showSuggestFind, setShowSuggestFind] = useState(true);
     const [showSuggestHeader, setShowSuggestHeader] = useState("Gợi ý hôm nay");
     //const [currentNewItems, setCurrentNewItems] = useState([ ]);
-    const itemsPerPage = 24;
+    const itemsPerPage = 28;
     useEffect(() => {
         localStorage.removeItem("item_details");
         async function checkLoggedIn() {
@@ -35,10 +35,10 @@ const Homepage = () => {
             return res;
         }
         checkLoggedIn().then(res => {
-            if (res.data.message_logged_in === "Phiên đăng nhập của bạn đã hết hạn. Bạn sẽ được điều hướng về trang đăng nhập ngay bây giờ") {
+            if (res.data.message_logged_in === "Phiên đăng nhập của bạn đã hết hạn. Bạn sẽ được điều hướng về trang đăng nhập ngay bây giờ" || res.data.message_logged_in === "Đã đăng nhập với vai trò admin") {
                 navigate("/sign-in");
             }
-            else if (res.data.message_logged_in === "Đã đăng nhập") {
+            else if (res.data.message_logged_in === "Đã đăng nhập với vai trò user") {
                 localStorage.setItem("username", res.data.message_username);
                 setUsername(res.data.message_username);
             }
@@ -194,7 +194,7 @@ const Homepage = () => {
         )
     }
     return (
-        <>
+        <div className="homepage-container">
             <div className="homepage-header">
                 <img loading="lazy" src="http://localhost:8080/logo.png" alt="" className="logo-homepage" onClick={e => {
                     window.location = "/homepage";
@@ -340,7 +340,7 @@ const Homepage = () => {
                     </ul>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

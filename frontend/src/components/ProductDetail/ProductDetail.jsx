@@ -19,7 +19,7 @@ const ProductDetail = () => {
             return res;
         }
         checkLoggedInDetails().then(res => {
-            if (res.data.message_logged_in === "Phiên đăng nhập của bạn đã hết hạn. Bạn sẽ được điều hướng về trang đăng nhập ngay bây giờ") {
+            if (res.data.message_logged_in === "Phiên đăng nhập của bạn đã hết hạn. Bạn sẽ được điều hướng về trang đăng nhập ngay bây giờ" || res.data.message_logged_in === "Đã đăng nhập với vai trò admin") {
                 navigate("/sign-in");
             }
         })
@@ -142,40 +142,92 @@ const ProductDetail = () => {
         )
     }
     return (
-        <div className="product-detail-container">
-            <div className="product-detail-left">
-                <div className="product-detail-image">
-                    <img loading="lazy" src={itemDetail.ImgUrl} alt="" />
-                </div>
-                {itemDetail.KeyFeatures.length > 0 && <div className="product-detail-keyFeatures">Đặc điểm nổi bật</div>}
-                {itemDetail.KeyFeatures.substring(0, itemDetail.KeyFeatures.length - 1).split(".").map((it, index) => {
-                    return (
-                        <div key={index} className="product-detail-keyFeatures-item">
-                            {it && <i className="fa-solid fa-circle-check"></i>}
-                            <span>{it}</span>
-                        </div>
-                    )
-                })}
-            </div>
-            <div className="product-detail-content">
-                <div className="product-detail-center">
-                    <div className="product-detail-author">
-                        <div className="product-detail-authentic">
-                            <img src="https://salt.tikicdn.com/ts/upload/d7/56/04/b93b8c666e13f49971483596ef14800f.png" alt="" />
-                        </div>
-                        {itemDetail.Author && <span>Tác giả:
-                            <span className="product-detail-name-author"> {itemDetail.Author}</span>
-                        </span>}
+        <div className="product-detail-page-container">
+            <div className="product-detail-container">
+                <div className="product-detail-left">
+                    <div className="product-detail-image">
+                        <img loading="lazy" src={itemDetail.ImgUrl} alt="" />
                     </div>
-                    <div className="product-detail-name">{itemDetail.ProductName}</div>
-                    <div className="product-detail-sold">
-                        <span className="avg-star-item-header">{
+                    {itemDetail.KeyFeatures.length > 0 && <div className="product-detail-keyFeatures">Đặc điểm nổi bật</div>}
+                    {itemDetail.KeyFeatures.substring(0, itemDetail.KeyFeatures.length - 1).split(".").map((it, index) => {
+                        return (
+                            <div key={index} className="product-detail-keyFeatures-item">
+                                {it && <i className="fa-solid fa-circle-check"></i>}
+                                <span>{it}</span>
+                            </div>
+                        )
+                    })}
+                </div>
+                <div className="product-detail-content">
+                    <div className="product-detail-center">
+                        <div className="product-detail-author">
+                            <div className="product-detail-authentic">
+                                <img src="https://salt.tikicdn.com/ts/upload/d7/56/04/b93b8c666e13f49971483596ef14800f.png" alt="" />
+                            </div>
+                            {itemDetail.Author && <span>Tác giả:
+                                <span className="product-detail-name-author"> {itemDetail.Author}</span>
+                            </span>}
+                        </div>
+                        <div className="product-detail-name">{itemDetail.ProductName}</div>
+                        <div className="product-detail-sold">
+                            <span className="avg-star-item-header">{
+                                isNaN((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1))
+                                    ? (0) : ((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1))}</span>
+                            <div className="product-detail-sold-start">
+                                {
+                                    isNaN((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1)) ? (
+                                        <i className="fa-solid fa-star"></i>
+
+                                    ) : (
+                                        new Array(Math.ceil(evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0))).fill(null).map((idd, iddd) => {
+                                            return (
+                                                <i key={iddd} className="fa-solid fa-star"></i>
+                                            )
+                                        })
+                                    )
+                                }
+                            </div>
+                            <span className="evaluate-item-header">({evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)})</span>
+                            <span className="sold-item-header">Đã bán {itemDetail.Sold > 5000 ? ("5000+") : (itemDetail.Sold)}</span>
+                        </div>
+                        <div className="product-detail-price">
+                            <span>{itemDetail.Price.replace(".00", "").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</span>
+                            <span className="product-detail-price-currency">₫</span>
+                        </div>
+                    </div>
+                    <div className="product-detail-right">
+                        <div className="product-detail-quantity">Số lượng</div>
+                        <div className="count-buy">
+                            {countProduct === 1 ? (
+                                <button className="decrease-count" disabled>-</button>
+                            ) : (
+                                <button className="decrease-count" onClick={e => setCountProduct(prev => prev - 1)}>-</button>
+                            )}
+                            <input type="number" className="config-count-product" value={countProduct} onChange={e => setCountProduct(e.target.value)} />
+                            <button className="increase-count" onClick={e => setCountProduct(prev => prev + 1)}>+</button>
+                        </div>
+                        <div className="product-detail-subtotal-title">Tạm tính</div>
+                        <div className="product-detail-subtotal">
+                            {Number(subTotal).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}₫
+                        </div>
+                        <button className="add-to-cart-btn" onClick={handleClickAddToCart}>Thêm vào giỏ</button>
+                    </div>
+                </div>
+                <div className="product-detail-back-homepage" onClick={e => navigate("/homepage")}>
+                    <i className="fa-solid fa-arrow-rotate-left"></i>
+                    <span>Quay trở lại shop</span>
+                </div>
+                <div className="evaluate-customer-container">
+                    <div className="evaluate-customer-title">Khách hàng đánh giá</div>
+                    <div className="evaluate-customer-overview">Tổng quan</div>
+                    <div className="star-avg-container">
+                        <div className="star-avg-score">{
                             isNaN((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1))
-                                ? (0) : ((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1))}</span>
-                        <div className="product-detail-sold-start">
+                                ? (0) : ((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1))}</div>
+                        <div className="star-avg-icon">
                             {
                                 isNaN((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1)) ? (
-                                    <i className="fa-solid fa-star"></i>
+                                    <></>
 
                                 ) : (
                                     new Array(Math.ceil(evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0))).fill(null).map((idd, iddd) => {
@@ -186,188 +238,138 @@ const ProductDetail = () => {
                                 )
                             }
                         </div>
-                        <span className="evaluate-item-header">({evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)})</span>
-                        <span className="sold-item-header">Đã bán {itemDetail.Sold > 5000 ? ("5000+") : (itemDetail.Sold)}</span>
                     </div>
-                    <div className="product-detail-price">
-                        <span>{itemDetail.Price.replace(".00", "").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</span>
-                        <span className="product-detail-price-currency">₫</span>
-                    </div>
-                </div>
-                <div className="product-detail-right">
-                    <div className="product-detail-quantity">Số lượng</div>
-                    <div className="count-buy">
-                        {countProduct === 1 ? (
-                            <button className="decrease-count" disabled>-</button>
-                        ) : (
-                            <button className="decrease-count" onClick={e => setCountProduct(prev => prev - 1)}>-</button>
-                        )}
-                        <input type="number" className="config-count-product" value={countProduct} onChange={e => setCountProduct(e.target.value)} />
-                        <button className="increase-count" onClick={e => setCountProduct(prev => prev + 1)}>+</button>
-                    </div>
-                    <div className="product-detail-subtotal-title">Tạm tính</div>
-                    <div className="product-detail-subtotal">
-                        {Number(subTotal).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}₫
-                    </div>
-                    <button className="add-to-cart-btn" onClick={handleClickAddToCart}>Thêm vào giỏ</button>
-                </div>
-            </div>
-            <div className="product-detail-back-homepage" onClick={e => navigate("/homepage")}>
-                <i className="fa-solid fa-arrow-rotate-left"></i>
-                <span>Quay trở lại shop</span>
-            </div>
-            <div className="evaluate-customer-container">
-                <div className="evaluate-customer-title">Khách hàng đánh giá</div>
-                <div className="evaluate-customer-overview">Tổng quan</div>
-                <div className="star-avg-container">
-                    <div className="star-avg-score">{
-                        isNaN((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1))
-                            ? (0) : ((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1))}</div>
-                    <div className="star-avg-icon">
-                        {
-                            isNaN((evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)).toFixed(1)) ? (
-                                <></>
-
-                            ) : (
-                                new Array(Math.ceil(evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count) * currentValue.StarVote, 0) / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0))).fill(null).map((idd, iddd) => {
-                                    return (
-                                        <i key={iddd} className="fa-solid fa-star"></i>
-                                    )
-                                })
-                            )
-                        }
-                    </div>
-                </div>
-                <div className="evaluate-total">({evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)} đánh giá)</div>
-                <div className="statistical-one-star">
-                    <div className="statistical-one-star-icon">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                    </div>
-                    <div className="one-evaluate-percent-container">
-                        <div className="one-evaluate-percent-real" style={{
-                            width: `calc(${evaluate[0].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
-                        }}></div>
-                    </div>
-                    <div className="one-evaluate-number">{evaluate[0].count}</div>
-                </div>
-                <div className="statistical-two-star">
-                    <div className="statistical-two-star-icon">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                    </div>
-                    <div className="two-evaluate-percent-container">
-                        <div className="two-evaluate-percent-real" style={{
-                            width: `calc(${evaluate[1].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
-                        }}></div>
-                    </div>
-                    <div className="two-evaluate-number">{evaluate[1].count}</div>
-                </div>
-                <div className="statistical-three-star">
-                    <div className="statistical-three-star-icon">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                    </div>
-                    <div className="three-evaluate-percent-container">
-                        <div className="three-evaluate-percent-real" style={{
-                            width: `calc(${evaluate[2].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
-                        }}></div>
-                    </div>
-                    <div className="three-evaluate-number">{evaluate[2].count}</div>
-                </div>
-                <div className="statistical-four-star">
-                    <div className="statistical-four-star-icon">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star gray-star"></i>
-                    </div>
-                    <div className="four-evaluate-percent-container">
-                        <div className="four-evaluate-percent-real" style={{
-                            width: `calc(${evaluate[3].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
-                        }}></div>
-                    </div>
-                    <div className="four-evaluate-number">{evaluate[3].count}</div>
-                </div>
-                <div className="statistical-five-star">
-                    <div className="statistical-five-star-icon">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                    </div>
-                    <div className="five-evaluate-percent-container">
-                        <div className="five-evaluate-percent-real" style={{
-                            width: `calc(${evaluate[4].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
-                        }}></div>
-                    </div>
-                    <div className="five-evaluate-number">{evaluate[4].count}</div>
-                </div>
-            </div>
-            <div className="comments-container">
-                <div className="comments-title">Bình luận ({mess.length})</div>
-                {mess.map((item, index) => {
-                    return (
-                        <div key={index} className="comment-item">
-                            <div className="comment-user">
-                                <i className="fa-solid fa-circle-user"></i>
-                            </div>
-                            <div className="comment-detail">
-                                <div className="comment-detail-username-postdate">
-                                    <div className="comment-detail-username">{item.Username}</div>
-                                    <div className="container-star-user">
-                                        {(new Array(item.StarVote).fill(null).map((x, y) => {
-                                            return (
-                                                <i key={y} className="fa-solid fa-star"></i>
-                                            )
-                                        }))}
-                                    </div>
-                                    <div className="comment-detail-postdate">
-                                        <i className="fa-regular fa-clock"></i>
-                                        <span>{item.PostDate}</span>
-                                    </div>
-                                </div>
-                                <p className="comment-detail-content">{item.Content}</p>
-                            </div>
+                    <div className="evaluate-total">({evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0)} đánh giá)</div>
+                    <div className="statistical-one-star">
+                        <div className="statistical-one-star-icon">
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
                         </div>
-                    )
-                })}
-                <textarea className="write-comment" value={message} onChange={e => setMessage(e.target.value)} spellCheck="false" autoComplete="off" placeholder="Viết bình luận"></textarea>
-                <p className="choose-star-title">
-                    Bình chọn số sao: <span>{checkVote}</span>
-                </p>
-                <div className="container-vote">
-                    <label htmlFor="choose-star-one"><span>1 </span><i className="fa-solid fa-star"></i></label>
-                    <input type="radio" id="choose-star-one" className="choose-star-content" name="star_rate" value="1" required />
+                        <div className="one-evaluate-percent-container">
+                            <div className="one-evaluate-percent-real" style={{
+                                width: `calc(${evaluate[0].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
+                            }}></div>
+                        </div>
+                        <div className="one-evaluate-number">{evaluate[0].count}</div>
+                    </div>
+                    <div className="statistical-two-star">
+                        <div className="statistical-two-star-icon">
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
+                        </div>
+                        <div className="two-evaluate-percent-container">
+                            <div className="two-evaluate-percent-real" style={{
+                                width: `calc(${evaluate[1].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
+                            }}></div>
+                        </div>
+                        <div className="two-evaluate-number">{evaluate[1].count}</div>
+                    </div>
+                    <div className="statistical-three-star">
+                        <div className="statistical-three-star-icon">
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
+                        </div>
+                        <div className="three-evaluate-percent-container">
+                            <div className="three-evaluate-percent-real" style={{
+                                width: `calc(${evaluate[2].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
+                            }}></div>
+                        </div>
+                        <div className="three-evaluate-number">{evaluate[2].count}</div>
+                    </div>
+                    <div className="statistical-four-star">
+                        <div className="statistical-four-star-icon">
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star gray-star"></i>
+                        </div>
+                        <div className="four-evaluate-percent-container">
+                            <div className="four-evaluate-percent-real" style={{
+                                width: `calc(${evaluate[3].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
+                            }}></div>
+                        </div>
+                        <div className="four-evaluate-number">{evaluate[3].count}</div>
+                    </div>
+                    <div className="statistical-five-star">
+                        <div className="statistical-five-star-icon">
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                        </div>
+                        <div className="five-evaluate-percent-container">
+                            <div className="five-evaluate-percent-real" style={{
+                                width: `calc(${evaluate[4].count / evaluate.reduce((accumulator, currentValue) => accumulator + Number(currentValue.count), 0) * 100}%)`,
+                            }}></div>
+                        </div>
+                        <div className="five-evaluate-number">{evaluate[4].count}</div>
+                    </div>
                 </div>
-                <div className="container-vote">
-                    <label htmlFor="choose-star-two"><span>2 </span> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></label>
-                    <input type="radio" id="choose-star-two" className="choose-star-content" name="star_rate" value="2" required />
+                <div className="comments-container">
+                    <div className="comments-title">Bình luận ({mess.length})</div>
+                    {mess.map((item, index) => {
+                        return (
+                            <div key={index} className="comment-item">
+                                <div className="comment-user">
+                                    <i className="fa-solid fa-circle-user"></i>
+                                </div>
+                                <div className="comment-detail">
+                                    <div className="comment-detail-username-postdate">
+                                        <div className="comment-detail-username">{item.Username}</div>
+                                        <div className="container-star-user">
+                                            {(new Array(item.StarVote).fill(null).map((x, y) => {
+                                                return (
+                                                    <i key={y} className="fa-solid fa-star"></i>
+                                                )
+                                            }))}
+                                        </div>
+                                        <div className="comment-detail-postdate">
+                                            <i className="fa-regular fa-clock"></i>
+                                            <span>{item.PostDate}</span>
+                                        </div>
+                                    </div>
+                                    <p className="comment-detail-content">{item.Content}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
+                    <textarea className="write-comment" value={message} onChange={e => setMessage(e.target.value)} spellCheck="false" autoComplete="off" placeholder="Viết bình luận"></textarea>
+                    <p className="choose-star-title">
+                        Bình chọn số sao: <span>{checkVote}</span>
+                    </p>
+                    <div className="container-vote">
+                        <label htmlFor="choose-star-one"><span>1 </span><i className="fa-solid fa-star"></i></label>
+                        <input type="radio" id="choose-star-one" className="choose-star-content" name="star_rate" value="1" required />
+                    </div>
+                    <div className="container-vote">
+                        <label htmlFor="choose-star-two"><span>2 </span> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></label>
+                        <input type="radio" id="choose-star-two" className="choose-star-content" name="star_rate" value="2" required />
+                    </div>
+                    <div className="container-vote">
+                        <label htmlFor="choose-star-three"><span>3 </span> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></label>
+                        <input type="radio" id="choose-star-three" className="choose-star-content" name="star_rate" value="3" required />
+                    </div>
+                    <div className="container-vote">
+                        <label htmlFor="choose-star-four"><span>4 </span> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></label>
+                        <input type="radio" id="choose-star-four" className="choose-star-content" name="star_rate" value="4" required />
+                    </div>
+                    <div className="container-vote">
+                        <label htmlFor="choose-star-five"><span>5 </span> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></label>
+                        <input type="radio" id="choose-star-five" className="choose-star-content" name="star_rate" value="5" required />
+                    </div>
+                    <button className="send-comment" onClick={handleSendComment}>Gửi</button>
                 </div>
-                <div className="container-vote">
-                    <label htmlFor="choose-star-three"><span>3 </span> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></label>
-                    <input type="radio" id="choose-star-three" className="choose-star-content" name="star_rate" value="3" required />
-                </div>
-                <div className="container-vote">
-                    <label htmlFor="choose-star-four"><span>4 </span> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></label>
-                    <input type="radio" id="choose-star-four" className="choose-star-content" name="star_rate" value="4" required />
-                </div>
-                <div className="container-vote">
-                    <label htmlFor="choose-star-five"><span>5 </span> <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></label>
-                    <input type="radio" id="choose-star-five" className="choose-star-content" name="star_rate" value="5" required />
-                </div>
-                <button className="send-comment" onClick={handleSendComment}>Gửi</button>
             </div>
         </div>
     );

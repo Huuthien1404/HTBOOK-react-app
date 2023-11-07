@@ -11,12 +11,13 @@ import {
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import Cart from "./components/Cart/Cart";
 import ChangePassword from "./components/ChangePassword/ChangePassword";
+import AdminPage from "./components/AdminPage/AdminPage";
 
 
 function App() {
   return (
     <Router>
-      <div className="page-container">
+      {/* <div className="page-container"> */}
         <Routes>
           <Route path="/*" element={<Navigate to="/sign-in" />} />
           <Route path="/sign-up" element={<Signup />} />
@@ -25,8 +26,9 @@ function App() {
           <Route path="/product-detail" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/change-password" element={<ChangePassword/>}/>
+          <Route path="/admin" element={<AdminPage/>}/>
         </Routes>
-      </div>
+      {/* </div> */}
     </Router>
   );
 }

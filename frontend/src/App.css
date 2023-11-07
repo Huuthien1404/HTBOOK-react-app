@@ -20,12 +20,6 @@ body {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
-.page-container {
-  width: 100%;
-  max-width: 1024px;
-  margin: 0 auto;
-}
-
 img {
   display: block;
   max-width: 100%;

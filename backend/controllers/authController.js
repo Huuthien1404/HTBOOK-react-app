@@ -101,10 +101,16 @@ const authController = {
   },
   loggedInController: (req, res) => {
     if (req.session.username) {
-      return res.json({
-        message_logged_in: "Đã đăng nhập",
-        message_username: `${req.session.username}`,
-      });
+      client.query(
+        `select "Role" from public."Users" where "Username" = '${req.session.username}'`,
+        (err, results) => {
+          if (err) throw err;
+          return res.json({
+            message_logged_in: `Đã đăng nhập với vai trò ${results.rows[0].Role}`,
+            message_username: `${req.session.username}`,
+          });
+        }
+      );
     } else {
       return res.json({
         message_logged_in:

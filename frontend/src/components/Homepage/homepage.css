@@ -419,7 +419,7 @@
     /* 14px */
     line-height: 1.25rem;
     /* 20px */
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 20px;
 }
 
@@ -525,7 +525,7 @@
     /* 14px */
     line-height: 1.25rem;
     /* 20px */
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 20px;
 }
 
@@ -544,6 +544,12 @@
     .email-text {
         width: 70%;
     }
+}
+
+.homepage-container {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 639.98px) {
@@ -683,7 +689,7 @@
     .about-me-phone {
         margin-left: -10px;
     }
-    
+
     .about-me-phone-content {
         margin-left: 10px;
     }
