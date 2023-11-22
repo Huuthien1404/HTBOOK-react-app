@@ -67,7 +67,7 @@ app.use("/api/show/", showRoute);
 
 const socketIo = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://htbook-2023.vercel.app"],
   },
 });
 
