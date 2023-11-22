@@ -33,8 +33,8 @@ app.use(
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      sameSite: "strict",
-      secure: false,
+      sameSite: "none",
+      secure: true,
     },
     store: new redisStore({
       client: redisClient,
