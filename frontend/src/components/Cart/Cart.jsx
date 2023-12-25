@@ -13,7 +13,7 @@ const Cart = () => {
     useEffect(() => {
         async function checkLoggedInCart() {
             const res = await axios({
-                url: "http://localhost:8080/api/auth/v1/logged-in",
+                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/logged-in",
                 method: "GET",
                 withCredentials: true
             });
@@ -26,7 +26,7 @@ const Cart = () => {
         }).catch(err => console.log(err))
         async function getCart() {
             const res = await axios({
-                url: "http://localhost:8080/api/order/v1/show-cart",
+                url: "https://htbook-server-qx4d.onrender.com/api/order/v1/show-cart",
                 method: "POST",
                 data: {
                     username: localStorage.username
@@ -58,7 +58,7 @@ const Cart = () => {
         }
         async function checkOut() {
             const res = await axios({
-                url: "http://localhost:8080/api/order/v1/check-out",
+                url: "https://htbook-server-qx4d.onrender.com/api/order/v1/check-out",
                 method: "POST",
                 withCredentials: true,
                 data: {

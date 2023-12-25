@@ -12,7 +12,7 @@ const ProductDetail = () => {
     useEffect(() => {
         async function checkLoggedInDetails() {
             const res = await axios({
-                url: "http://localhost:8080/api/auth/v1/logged-in",
+                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/logged-in",
                 method: "GET",
                 withCredentials: true
             });
@@ -33,13 +33,13 @@ const ProductDetail = () => {
     const socketRef = useRef();
     const [mess, setMess] = useState([]);
     useEffect(() => {
-        socketRef.current = socketIOClient.connect("http://localhost:8080");
+        socketRef.current = socketIOClient.connect("https://htbook-server-qx4d.onrender.com");
         socketRef.current.on('sendDataServer', dataGot => {
             setMess(oldMsgs => [...oldMsgs, dataGot])
         }) // mỗi khi có tin nhắn thì mess sẽ được render thêm 
         async function getCommentByProduct() {
             const res = await axios({
-                url: "http://localhost:8080/api/comment/v1/show-all-comment-by-product",
+                url: "https://htbook-server-qx4d.onrender.com/api/comment/v1/show-all-comment-by-product",
                 withCredentials: true,
                 method: "POST",
                 data: {
@@ -59,7 +59,7 @@ const ProductDetail = () => {
     useEffect(() => {
         async function getEvaluateDashboard() {
             const res = await axios({
-                url: "http://localhost:8080/api/comment/v1/show-evaluate-by-product",
+                url: "https://htbook-server-qx4d.onrender.com/api/comment/v1/show-evaluate-by-product",
                 method: "POST",
                 data: {
                     product_id: JSON.parse(localStorage.getItem("item_details")).ProductID
@@ -84,7 +84,7 @@ const ProductDetail = () => {
     const handleClickAddToCart = () => {
         async function addToCart() {
             const res = await axios({
-                url: "http://localhost:8080/api/order/v1/add-to-cart",
+                url: "https://htbook-server-qx4d.onrender.com/api/order/v1/add-to-cart",
                 method: "POST",
                 withCredentials: true,
                 data: {

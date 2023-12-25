@@ -11,7 +11,7 @@ const Signin = () => {
         localStorage.removeItem("item_details");
         async function checkLoggedInSignInPage() {
             const res = await axios({
-                url: "http://localhost:8080/api/auth/v1/logged-in",
+                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/logged-in",
                 method: "GET",
                 withCredentials: true
             });
@@ -19,7 +19,8 @@ const Signin = () => {
         }
         checkLoggedInSignInPage().then(res => {
             if (res.data.message_logged_in === "Đã đăng nhập với vai trò user") {
-                navigate("/homepage");
+                console.log("hihi");
+                //navigate("/homepage");
             }
             else if (res.data.message_logged_in === "Đã đăng nhập với vai trò admin") {
                 navigate("/admin");
@@ -41,7 +42,7 @@ const Signin = () => {
         onSubmit: (values) => {
             async function checkLogin() {
                 const res = await axios({
-                    url: "http://localhost:8080/api/auth/v1/sign-in",
+                    url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/sign-in",
                     withCredentials: true,
                     method: "POST",
                     data: {
