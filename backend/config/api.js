@@ -5,6 +5,7 @@ const client = new Pool({
   database: process.env.DATABASE,
   password: process.env.DB_PASSWORD,
   port: 5432,
-  user: process.env.USER
+  user: process.env.USER,
+  ssl: true
 });
 module.exports = client;

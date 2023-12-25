@@ -14,7 +14,7 @@ const productController = {
   },
   showPopularProducts: (req, res) => {
     client.query(`select tb1.* from public."Products" as tb1, public."TopProducts" as tb2 where tb1."ProductID" = tb2."TopProductID"
-    order by tb2."NumberOrder" desc
+    order by tb1."Sold" desc
     limit 50;`, (err, results) => {
       if (err) throw err;
       return res.json({

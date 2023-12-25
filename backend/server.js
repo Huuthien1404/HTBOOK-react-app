@@ -6,6 +6,7 @@ const commentRoute = require("./routes/commentRoute");
 const showRoute = require("./routes/showRoute");
 const passport = require("passport");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const redis = require("ioredis");
 const redisStore = require("connect-redis")(session);
@@ -26,6 +27,10 @@ app.use(
   })
 );
 
+app.use(cookieParser());
+
+app.set("trust-proxy", 1);
+
 app.use(
   session({
     secret: SESSION_KEY,
@@ -33,8 +38,9 @@ app.use(
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      sameSite: "none",
-      secure: true,
+      sameSite: "lax",
+      secure: false,
+      httpOnly: true,
     },
     store: new redisStore({
       client: redisClient,
@@ -68,6 +74,7 @@ app.use("/api/show/", showRoute);
 const socketIo = require("socket.io")(server, {
   cors: {
     origin: ["http://localhost:3000", "https://htbook-2023.vercel.app"],
+    credentials: true,
   },
 });
 
@@ -88,7 +95,7 @@ socketIo.on("connection", (socket) => {
           Username: data.username,
           Content: data.content,
           PostDate: data.date_post,
-          StarVote: data.star_vote
+          StarVote: data.star_vote,
         }); // phát sự kiện  có tên sendDataServer cùng với dữ liệu tin nhắn từ phía server
       }
     );
