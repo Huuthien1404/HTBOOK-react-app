@@ -196,7 +196,7 @@ const Homepage = () => {
     return (
         <div className="homepage-container">
             <div className="homepage-header">
-                <img loading="lazy" src="https://htbook-server-qx4d.onrender.com/logo.png" alt="" className="logo-homepage" onClick={e => {
+                <img loading="lazy" src="https://htbook-server-qx4d.onrender.com/logo.PNG" alt="" className="logo-homepage" onClick={e => {
                     window.location = "/homepage";
                 }} />
                 <div className="homepage-header-list">
