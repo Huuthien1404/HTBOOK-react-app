@@ -40,7 +40,7 @@ app.use(
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true, // Đảm bảo cookie chỉ có thể được truy cập qua HTTP/HTTPS
       secure: true, // Yêu cầu sử dụng kết nối an toàn (HTTPS)
-      sameSite: "None", // Cho phép chia sẻ cookie giữa các trang từ domain khác nhau
+      sameSite: "none", // Cho phép chia sẻ cookie giữa các trang từ domain khác nhau
       domain: ".onrender.com", // Đặt domain của cookie cho server
     },
     store: new redisStore({
