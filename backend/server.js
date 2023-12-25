@@ -38,8 +38,8 @@ app.use(
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      sameSite: "none",
-      secure: "auto",
+      sameSite: "lax",
+      secure: "false",
       httpOnly: true,
     },
     store: new redisStore({
