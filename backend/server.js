@@ -39,7 +39,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
       sameSite: "none",
-      secure: false,
+      secure: "auto",
       httpOnly: true,
     },
     store: new redisStore({
@@ -50,7 +50,7 @@ app.use(
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://htbook-2023.vercel.app"],
+    origin: ["http://localhost:3000", "https://htbook-react-app-n608.onrender.com"],
     credentials: true,
   })
 );
@@ -73,7 +73,7 @@ app.use("/api/show/", showRoute);
 
 const socketIo = require("socket.io")(server, {
   cors: {
-    origin: ["http://localhost:3000", "https://htbook-2023.vercel.app"],
+    origin: ["http://localhost:3000", "https://htbook-react-app-n608.onrender.com"],
     credentials: true,
   },
 });
