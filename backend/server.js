@@ -38,6 +38,10 @@ app.use(
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
+      httpOnly: true, // Đảm bảo cookie chỉ có thể được truy cập qua HTTP/HTTPS
+      secure: true, // Yêu cầu sử dụng kết nối an toàn (HTTPS)
+      sameSite: "None", // Cho phép chia sẻ cookie giữa các trang từ domain khác nhau
+      domain: ".onrender.com", // Đặt domain của cookie cho server
     },
     store: new redisStore({
       client: redisClient,
@@ -47,7 +51,10 @@ app.use(
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://htbook-react-app-n608.onrender.com"],
+    origin: [
+      "http://localhost:3000",
+      "https://htbook-react-app-n608.onrender.com",
+    ],
     credentials: true,
   })
 );
@@ -70,7 +77,10 @@ app.use("/api/show/", showRoute);
 
 const socketIo = require("socket.io")(server, {
   cors: {
-    origin: ["http://localhost:3000", "https://htbook-react-app-n608.onrender.com"],
+    origin: [
+      "http://localhost:3000",
+      "https://htbook-react-app-n608.onrender.com",
+    ],
     credentials: true,
   },
 });
