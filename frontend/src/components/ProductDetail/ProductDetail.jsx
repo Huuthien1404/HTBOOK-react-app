@@ -33,7 +33,9 @@ const ProductDetail = () => {
     const socketRef = useRef();
     const [mess, setMess] = useState([]);
     useEffect(() => {
-        socketRef.current = socketIOClient.connect("https://htbook-server-qx4d.onrender.com");
+        socketRef.current = socketIOClient.connect("https://htbook-server-qx4d.onrender.com", {
+            withCredentials: true,
+        });
         socketRef.current.on('sendDataServer', dataGot => {
             setMess(oldMsgs => [...oldMsgs, dataGot])
         }) // mỗi khi có tin nhắn thì mess sẽ được render thêm 
