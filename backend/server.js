@@ -49,15 +49,15 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://htbook-react-app-n608.onrender.com",
-    ],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:3000",
+//       "https://htbook-react-app-n608.onrender.com",
+//     ],
+//     credentials: true,
+//   })
+// );
 
 app.use(express.json());
 
@@ -75,15 +75,17 @@ app.use("/api/comment/", commentRoute);
 
 app.use("/api/show/", showRoute);
 
-const socketIo = require("socket.io")(server, {
-  cors: {
-    origin: [
-      "http://localhost:3000",
-      "https://htbook-react-app-n608.onrender.com",
-    ],
-    credentials: true,
-  },
-});
+// const socketIo = require("socket.io")(server, {
+//   cors: {
+//     origin: [
+//       "http://localhost:3000",
+//       "https://htbook-react-app-n608.onrender.com",
+//     ],
+//     credentials: true,
+//   },
+// });
+
+const socketIo = require("socket.io")(server);
 
 socketIo.on("connection", (socket) => {
   ///Handle khi có connect từ client tới
