@@ -28,7 +28,7 @@ const Homepage = () => {
         localStorage.removeItem("item_details");
         async function checkLoggedIn() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/logged-in",
+                url: "/api/auth/v1/logged-in",
                 method: "GET",
                 withCredentials: true
             });
@@ -48,7 +48,7 @@ const Homepage = () => {
         async function getPopularProduct() {
             setLoading(true);
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/product/v1/show-popular-products",
+                url: "/api/product/v1/show-popular-products",
                 withCredentials: true,
                 method: "GET",
             });
@@ -64,7 +64,7 @@ const Homepage = () => {
         async function getProduct() {
             setLoading(true);
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/product/v1/show-all-products",
+                url: "/api/product/v1/show-all-products",
                 withCredentials: true,
                 method: "GET",
             });
@@ -82,7 +82,7 @@ const Homepage = () => {
         async function checkProductInCart() {
             setLoading(true);
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/product/v1/contain-product-in-cart",
+                url: "/api/product/v1/contain-product-in-cart",
                 withCredentials: true,
                 method: "POST",
                 data: {
@@ -115,7 +115,7 @@ const Homepage = () => {
         setLoading(true);
         try {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/product/v1/filter-product-by-name",
+                url: "/api/product/v1/filter-product-by-name",
                 method: "POST",
                 withCredentials: true,
                 data: {
@@ -137,7 +137,7 @@ const Homepage = () => {
     const handleClickLogOut = () => {
         async function userLogOut() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/log-out",
+                url: "/api/auth/v1/log-out",
                 method: "GET",
                 withCredentials: true
             })
@@ -153,7 +153,7 @@ const Homepage = () => {
         localStorage.setItem("item_details", JSON.stringify(getItem));
         async function addPopularProduct() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/product/v1/add-to-popular-product",
+                url: "/api/product/v1/add-to-popular-product",
                 method: "POST",
                 withCredentials: true,
                 data: {
@@ -173,7 +173,7 @@ const Homepage = () => {
         let itemName = e.target.querySelector(".best-find-item-name").innerHTML;
         async function getPopularProductByName() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/product/v1/get-popular-product-by-name",
+                url: "/api/product/v1/get-popular-product-by-name",
                 method: "POST",
                 withCredentials: true,
                 data: {
@@ -196,7 +196,7 @@ const Homepage = () => {
     return (
         <div className="homepage-container">
             <div className="homepage-header">
-                <img loading="lazy" src="https://htbook-server-qx4d.onrender.com/logo.PNG" alt="" className="logo-homepage" onClick={e => {
+                <img loading="lazy" src="/logo.PNG" alt="" className="logo-homepage" onClick={e => {
                     window.location = "/homepage";
                 }} />
                 <div className="homepage-header-list">

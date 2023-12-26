@@ -9,7 +9,7 @@ const ChangePassword = () => {
     useEffect(() => {
         async function checkLoggedInChangePassword() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/logged-in",
+                url: "/api/auth/v1/logged-in",
                 method: "GET",
                 withCredentials: true
             });
@@ -37,7 +37,7 @@ const ChangePassword = () => {
         onSubmit: (values) => {
             async function handleChangePassword() {
                 const res = await axios({
-                    url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/change-password",
+                    url: "/api/auth/v1/change-password",
                     method: "POST",
                     withCredentials: true,
                     data: {

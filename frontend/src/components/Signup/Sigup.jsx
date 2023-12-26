@@ -10,7 +10,7 @@ const Signup = () => {
     useEffect(() => {
         async function checkLoggedInSignUpPage() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/logged-in",
+                url: "/api/auth/v1/logged-in",
                 method: "GET",
                 withCredentials: true
             });
@@ -44,7 +44,7 @@ const Signup = () => {
         onSubmit: (values) => {
             async function checkRegister() {
                 const res = await axios({
-                    url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/sign-up",
+                    url: "/api/auth/v1/sign-up",
                     withCredentials: true,
                     method: "POST",
                     data: {

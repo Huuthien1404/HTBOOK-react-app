@@ -40,7 +40,7 @@ const AdminPage = () => {
         async function showAllData() {
             setLoading(true);
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/show/v1/show-all-users-products-orders",
+                url: "/api/show/v1/show-all-users-products-orders",
                 withCredentials: true,
                 method: "GET"
             });
@@ -59,7 +59,7 @@ const AdminPage = () => {
     useEffect(() => {
         async function checkLoggedInAdminPage() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/logged-in",
+                url: "/api/auth/v1/logged-in",
                 method: "GET",
                 withCredentials: true
             });
@@ -102,7 +102,7 @@ const AdminPage = () => {
     const handleSubmitAddProductRecord = () => {
         async function addProductRecord() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/product/v1/add-product-record",
+                url: "/api/product/v1/add-product-record",
                 withCredentials: true,
                 data: {
                     productId: document.querySelector(".add-product-record-content-productId").value,
@@ -200,7 +200,7 @@ const AdminPage = () => {
     const handleClickSaveEditProductRecord = () => {
         async function updateInfoProductRecord() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/product/v1/update-info-product-record",
+                url: "/api/product/v1/update-info-product-record",
                 method: "POST",
                 withCredentials: true,
                 data: {
@@ -232,7 +232,7 @@ const AdminPage = () => {
         if (window.confirm("Bạn đồng ý xoá sản phẩm này?")) {
             async function deleteProductRecord() {
                 const res = await axios({
-                    url: "https://htbook-server-qx4d.onrender.com/api/product/v1/delete-product-record",
+                    url: "/api/product/v1/delete-product-record",
                     data: {
                         productId: Number(e.currentTarget.parentNode.parentNode.querySelector(".record-item-product-productId").innerHTML)
                     },
@@ -251,7 +251,7 @@ const AdminPage = () => {
     const handleClickLogOutAdmin = () => {
         async function adminLogOut() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/log-out",
+                url: "/api/auth/v1/log-out",
                 method: "GET",
                 withCredentials: true
             })

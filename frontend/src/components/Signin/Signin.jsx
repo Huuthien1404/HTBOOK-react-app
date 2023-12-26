@@ -11,7 +11,7 @@ const Signin = () => {
         localStorage.removeItem("item_details");
         async function checkLoggedInSignInPage() {
             const res = await axios({
-                url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/logged-in",
+                url: "/api/auth/v1/logged-in",
                 method: "GET",
                 withCredentials: true
             });
@@ -42,7 +42,7 @@ const Signin = () => {
         onSubmit: (values) => {
             async function checkLogin() {
                 const res = await axios({
-                    url: "https://htbook-server-qx4d.onrender.com/api/auth/v1/sign-in",
+                    url: "/api/auth/v1/sign-in",
                     withCredentials: true,
                     method: "POST",
                     data: {
