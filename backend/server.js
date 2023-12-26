@@ -41,6 +41,7 @@ app.use(
       httpOnly: true,
       secure: true, 
       sameSite: "none", 
+      domain: ".onrender.com",
     },
     store: new redisStore({
       client: redisClient,
